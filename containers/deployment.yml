@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kiss-deployment
+  labels:
+    app: kiss # required for finding it from the service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kiss # which container to use (there could be more than one)
+  template:
+    metadata:
+      labels:
+        app: kiss
+    spec:
+      containers:
+      - name: kiss
+        image: demo/kiss
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Never
+        env: # sample on how to set enviroment variables for the webserver (not working)
+        - name: log_level
+          value: "debug"

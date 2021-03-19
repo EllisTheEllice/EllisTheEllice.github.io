@@ -1,0 +1,344 @@
+<html>
+
+<head>
+    <!-- add style via bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- add icons as font -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- add some java script for folding views -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <!-- add an icon -->
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <title>kubernetes quickstart</title>
+    <style>
+        .card {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <!-- add a title bar -->
+    <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+        <div class="container-fluid d-flex align-items-center">
+            <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+                <img src="images/logo.png" width="38" height="30" class="me-3" alt="Bootstrap">
+                Kubernetes quickstart
+            </h1>
+        </div>
+
+        <a href="https://github.com/eXpire163/k8s-quickstart" class="text-white">
+            code on github
+        </a>
+
+
+    </header>
+
+    <!-- have the accordion ui -->
+    <div class="accordion" id="accordionExample">
+        <!-- zero -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingZero">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZero"
+                    aria-expanded="true" aria-controls="collapseZero">
+                    Ways to get started
+                </button>
+            </h2>
+            <div id="collapseZero" class="accordion-collapse collapse show" aria-labelledby="headingZero"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    There are multiple ways to get running with docker and kubernetes. But you can drill it down to 3
+                    major areas:
+                    <br />
+                    <br />
+
+                    <ul class="list-group">
+                        <li class="list-group-item">On bare metal (from raspberry pi to server farm)</li>
+                        <li class="list-group-item">On a virtual machine (managed: use docker for desktop, minikube
+                            unmanaged:
+                            get started with a linux vm)</li>
+                        <li class="list-group-item">On the cloud (e.g.<a
+                                href="https://kubernetes.io/docs/tutorials/hello-minikube/">minikube on katacoda</a> or
+                            <a href="https://labs.play-with-k8s.com/">play with k8s</a> )
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- one -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    What we want to show
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    In this short demo we want to show all pieces for a minimal but fully working webserver on
+                    kubernetes.
+                    <br />
+                    <br />
+
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">The pieces we will see in here:</li>
+                        <li class="list-group-item">Web content as simple html</li>
+                        <li class="list-group-item">A dockerfile putting the content in a server</li>
+                        <li class="list-group-item">The kubernetes stuff</li>
+                        <li class="list-group-item">CI / CD</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- two -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Build the web content
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Building web content can be quite a challenging task when you want to put in lots of fancy
+                    frameworks, but for now: <br><strong>KISS: Keep it simple & stupid</strong>
+                    <br />
+                    We just need one file called index.html that contains all our content we want to present and a view
+                    images <br />
+                    see <code>docs/index.html</code>
+
+                </div>
+            </div>
+        </div>
+        <!-- three -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Creating our webserver
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    There are lots of webserver on the market. But please don't think now about Websphere, jboss,
+                    tomcat etc. We want to continue with our approach from above: <strong>KISS</strong>
+                    <br />
+                    <br />
+                    The solution in our case is <code>nginx</code>. Feel free to google what nginx is capable of,
+                    but for our case, lets say its a <strong>simple webserver</strong>. So let's start the setup ... ahh
+                    hold on ... no we don't.
+                    <br />
+                    <br />
+                    In the world of docker / kubernetes we don't need to do a setup, we just say we want to use
+                    it.<br />
+                    <br />
+                    <code>
+                        FROM nginx:latest
+                    </code>
+                    <br />
+                    <br />Server setup done, but we need the content now, so let's add it<br />
+                    <br />
+                    <code>
+                        COPY ./docs/index.html /usr/share/nginx/html/index.html
+                    </code>
+                    <br />
+                    <br />
+                    So now, let the magic begin. What we need now, is the so called <code>image</code>. For the image we
+                    need to run only one command<br />
+                    <br />
+                    <code>docker build --tag demo/kiss .</code>
+                    <br /><br />
+                    <img src="images/docker-build.gif" alt="docker-build" />
+                    <br />
+                    <br />Now we have our image that is called <strong>kiss</strong> and it's the most recent
+                    one. Let's see if this is right<br />
+                    <br />
+                    <code>docker images demo/kiss</code>
+                    <br />
+                    <br />Now we could just run a <code>docker run -p 8081:80 demo/kiss:latest</code> and we would be
+                    done
+                    with the <strong>docker quickstart session</strong>
+                    <br />
+                    <div class="card" style="width: 22rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">View more notes</h5>
+                            <p class="card-text">
+                            <ul>
+                                <li>
+                                    adding a <code>--detach</code> would run the server in the background
+                                </li>
+                                <li>the <code>-p 8081:80</code> publish the server on 8081 on this laptop, although the
+                                    actual server port is 80
+                                </li>
+                            </ul>
+                            </p>
+                            <a href="https://docs.docker.com/engine/reference/commandline/run/" class="card-link">more
+                                to run</a>
+                            <a href="https://docs.docker.com/engine/reference/commandline/build/" class="card-link">more
+                                to build</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- four -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Get it on kubernetes
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Now, let's see what we got so far<br />
+                    <i class="bi-check-circle-fill" style="color: limegreen;"></i> Web content<br />
+                    <i class="bi-check-circle-fill" style="color: limegreen;"></i> Webserver<br />
+                    <i class="bi-check-circle-fill" style="color: limegreen;"></i> Docker image<br /><br />
+
+                    Now we only need to get it on kubernetes. Therefore, we need 2 things if we want to do it kind of
+                    right.
+                    <ul>
+                        <li>
+                            a <code>deployment</code> that runs our image
+                        </li>
+                        <li>a <code>service</code> that shows us how to access it
+                        </li>
+                    </ul>
+                    The <code>deployment</code> can define a awful lot of things, but if you break it down to the core
+                    things you need to start, it's pretty straight forward. Let's have a look at the
+                    <code>deployment.yml</code>
+                    <br /><br />
+                    The <code>service</code> is required to let kubernetes know what it needs to wire together. Let's
+                    have a look at the <code>service.yml</code>
+                    <br /><br />
+                    Now as we know what we want to put on kubernetes, lets explore one way to do it. As we already build
+                    the yml files, we can directly apply them to our cluster.
+                    <br /><br />
+                    <code>kubectl apply -f .</code>
+                    <br /><br />
+                    The -f says we want to deploy a file, but you can also select the whole directory, and kubernetes
+                    will check what is actually a kubernetes yaml and then deploys them.
+                    <br /><br />
+                    Now it would be great to know what is happening on the server.
+                    <code>kubectl get deployments</code> shows us all deployments on the server (in the current
+                    namespace). Depending on the version of your setup, other words also work like "deploy" as a short
+                    cut or deployments.apps as a fully qualified resource definition.<br />
+                    <code>kubectl get pods</code> shows us all "containers" that are running or should be running<br />
+                    <code>kubectl get pods | grep kiss</code> shows us all "containers" that contain somewhere
+                    "kiss" <br />
+                    <code>kubectl get pods --watch | grep kiss</code> updates the output whenever something
+                    changes <br />
+
+
+                    <br /><br />
+                    <img src="images/kube-apply.gif" alt="kubectl-apply" />
+                    <br /><br />
+                    If you also want to see what our service does or what port we use now:</br>
+                    <code>kubectl get svc kiss-service</code>
+
+                    <br /><br />
+                    Finally we can also have a look at the live logs on kubernetes inside our pod:<br />
+                    <code>kubectl logs -f kiss-deployment-74745f88d-lqjgf</code>
+
+                </div>
+            </div>
+        </div>
+        <!-- five -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Automation
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    As you don't want to run everything by hand every time, let's get some <code>CI / CD</code>!! <br />
+                    <br />
+                    Scary??
+                    <br />
+                    <br />
+                    Let's have a look at our local ci/cd in <code>update.sh</code>
+                </div>
+            </div>
+        </div>
+        <!-- six -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    What's next
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    If you enjoined the quickstart, please like and subscribe ;) <br /><br />
+                    Bit more serious, there are multiple ways to continue.
+                    <br /><br />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Direction</th>
+                                <th scope="col">Way</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Better understanding of Docker</td>
+                                <td>Have a look at the official docker <a
+                                        href="https://training.play-with-docker.com/">training</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Better understanding of Kubernetes</td>
+                                <td>Have a look at the official kubernetes <a
+                                        href="https://kubernetes.io/de/docs/tutorials/kubernetes-basics/">basics</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Kubernetes on AWS</td>
+                                <td>Complete the intro and beginner section of the <a
+                                        href="https://www.eksworkshop.com/">eks
+                                        workshop</a>, my <i class="bi bi-star-fill" style="color: limegreen;"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Kubernetes @ home / on edge</td>
+                                <td>Get kubernetes on a raspberry pi with <a href="https://k3s.io/">k3s</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Run a multi part solution on k8s</td>
+                                <td>The most used sample is <a
+                                        href="https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/">WordPress
+                                        with MySQL</a> as your first <strong>real scenario</strong>. Make sure you are
+                                    feeling comfortable with the pieces shown in the quickstart, otherwise there will be
+                                    to many new things at ones.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
